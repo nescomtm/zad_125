@@ -5,6 +5,8 @@ var quoteUrl = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&fi
 
 var $paragraph = $('#joke');
 
+var prefix = "https://cors-anywhere.herokuapp.com/";
+
 function getJoke() {
     $.ajax({
         method: 'GET',
@@ -16,7 +18,8 @@ function getJoke() {
 }
 
 function getQuote() {
-    $.getJSON(quoteUrl, createTweet);
+    $.ajaxSetup({ cache: false });
+    $.getJSON(prefix+quoteUrl, createTweet);
 }
 
 function createTweet(input) {
@@ -38,7 +41,7 @@ function createTweet(input) {
         $('.author').text("Author: " + quoteAuthor);
         $('.tweet').attr('href', tweet);
     }
-    $('.tweet').attr('href', tweet);
+    //$('.tweet').attr('href', tweet);
 }
 
 //$('.tweet').attr('href', tweet);
